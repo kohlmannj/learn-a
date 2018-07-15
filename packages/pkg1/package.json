@@ -5,9 +5,10 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "build": "concurrently \"npm run build:js\" \"npm run build:dts\"",
+    "build": "concurrently npm:build:*",
     "build:js": "babel --out-dir ./lib --extensions \".js,.jsx,.ts,.tsx\" ./src",
     "build:dts": "tsc -b .",
+    "dev": "concurrently \"npm run build:js -- --watch\" \"npm run build:dts -- --watch\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "tsc -b ."
   },
