@@ -1,12 +1,18 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
+        // Always include these settings
+        "composite": true,
         "declaration": true,
         "declarationMap": true,
         "sourceMap": true,
+
+        // These settings are totally up to you
+        "target": "es6",
+        "module": "commonjs",
         "strict": true,
-        "composite": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+
+        // Emit declarations only since we're using Babel to transpile
+        "emitDeclarationOnly": true
     }
 }

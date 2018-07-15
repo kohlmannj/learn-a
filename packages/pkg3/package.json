@@ -5,8 +5,11 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
+    "build": "concurrently \"npm run build:js\" \"npm run build:dts\"",
+    "build:js": "babel --out-dir ./lib --extensions \".js,.jsx,.ts,.tsx\" ./src",
+    "build:dts": "tsc -b .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublishOnly": "tsc -b ."
+    "prepublishOnly": "npm run build"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +19,8 @@
     "@ryancavanaugh/pkg2": "^3.0.2"
   },
   "devDependencies": {
-    "typescript": "^3.0.0-dev.20180626"
+    "@babel/cli": "^7.0.0-beta.53",
+    "concurrently": "^3.6.0",
+    "typescript": "^3.0.0-rc"
   }
 }

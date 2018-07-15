@@ -3,7 +3,22 @@
 	"workspaces": [
 		"packages/*"
 	],
+	"scripts": {
+		"bootstrap": "lerna bootstrap",
+		"build": "concurrently npm:build:*",
+		"build:js": "lerna exec --parallel -- babel --out-dir ./lib --extensions \".js,.jsx,.ts,.tsx\" ./src",
+		"build:dts": "tsc -b packages",
+		"clean": "npm run clean:lib && npm run clean:lerna",
+		"clean:lerna": "lerna clean --yes",
+		"clean:lib": "rm -rf packages/*/lib",
+		"dev": "concurrently \"npm run build:js -- --watch\" \"npm run build:dts -- --watch\""
+	},
 	"devDependencies": {
+		"@babel/cli": "^7.0.0-beta.53",
+		"@babel/core": "^7.0.0-beta.53",
+		"@babel/preset-env": "^7.0.0-beta.53",
+		"@babel/preset-typescript": "^7.0.0-beta.53",
+		"concurrently": "^3.6.0",
 		"lerna": "^2.11.0",
 		"typescript": "^3.0.0-dev.20180626"
 	}
