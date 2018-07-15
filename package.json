@@ -8,7 +8,7 @@
 		"build": "concurrently npm:build:*",
 		"build:js": "lerna exec --parallel -- babel --out-dir ./lib --extensions \".js,.jsx,.ts,.tsx\" ./src",
 		"build:dts": "tsc -b packages",
-		"clean": "npm run clean:lib && npm run clean:lerna",
+		"clean": "concurrently npm:clean:*",
 		"clean:lerna": "lerna clean --yes",
 		"clean:lib": "rm -rf packages/*/lib",
 		"dev": "concurrently \"npm run build:js -- --watch\" \"npm run build:dts -- --watch\""
